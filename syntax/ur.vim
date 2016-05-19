@@ -8,7 +8,6 @@ unlet b:current_syntax
 
 syntax include @xml syntax/xml.vim
 unlet b:current_syntax
-"syntax match ursInclude '{\[[^\]]*}'
 
 syntax region xmlRegion start='\<xml\>' end='\<\/xml\>' contains=@xml
 syntax match ursTemplate '{[^}]*}' containedin=xmlTag,xmlTagName,xmlAttrib,xmlRegion
