@@ -9,7 +9,8 @@ unlet b:current_syntax
 syntax include @xml syntax/xml.vim
 unlet b:current_syntax
 
-syntax region xmlRegion start='\<xml\>' end='\<\/xml\>' contains=@xml
+syntax region xmlRegion matchgroup=xmlString start='<xml>' end='<\/xml>' contains=@xml
+syntax match xmlString '<xml/>'
 syntax match ursTemplate '{[^}]*}' containedin=xmlTag,xmlTagName,xmlAttrib,xmlRegion
 
 syntax keyword ursType      int string real time
@@ -22,5 +23,4 @@ highlight link ursStatement Statement
 highlight link ursKeyword   Keyword
 highlight link ursTemplate  Include
 highlight link ursInclude   Include
-highlight link xmlRegion    String
 let b:current_syntax = "ur"
