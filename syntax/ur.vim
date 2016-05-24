@@ -15,7 +15,7 @@ syntax match ursTemplate '{[^}]*}' containedin=xmlTag,xmlTagName,xmlAttrib,xmlRe
 
 syntax keyword ursType      int string real time
 syntax keyword ursStatement Name Type Unit
-syntax keyword ursKeyword   return
+syntax keyword ursKeyword   return con
 syntax keyword ursInclude   dml
 
 highlight link ursType Type
