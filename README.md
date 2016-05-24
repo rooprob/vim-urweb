@@ -14,7 +14,7 @@ vim-urweb is a plugin for ur/web development in vim.
 
 # Bugs
 
-* XML: embedded ml which adding additional closing/opening <xml> tags confuses the highligher. See urweb demos/batch.ur:27, demos/nested.ur:47 etc.
+* Please let me know in the [bug tracker](https://github.com/rooprob/vim-urweb/issues)
 
 # Thanks
 
