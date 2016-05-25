@@ -18,7 +18,7 @@ syntax region smlInsideXml matchgroup=smlEncl matchGroup=smlKeyword  start="{" m
 " Additional keywords not included in sml
 syntax keyword ursType      int string real time
 syntax keyword ursStatement Name Type Unit
-syntax keyword ursKeyword   return con
+syntax keyword ursKeyword   return con style
 syntax keyword ursInclude   dml
 
 highlight link ursType Type
@@ -27,4 +27,6 @@ highlight link ursKeyword   Keyword
 highlight link ursInclude   Include
 "Personal pref: mute the color of the <xml>..</xml> tags slightly.
 highlight link xmlString    Comment
+"mute color of xml region text
+"highlight link xmlRegion    Comment
 let b:current_syntax = "ur"
