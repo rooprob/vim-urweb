@@ -5,6 +5,7 @@ endif
 " note: indentkeys starts with xml.vim and concatonated by sml.vim.
 " note: indentexpr is supplied by this vimscript.
 
+" from vim74/indent/xml.vim
 runtime! indent/xml.vim
 unlet b:did_indent
 
