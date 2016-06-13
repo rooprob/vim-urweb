@@ -49,10 +49,58 @@ function! <SID>InsideXml(lnum)
 endfunction
 
 function! UrIndent()
+        let line = getline(v:lnum)
 	if <SID>InsideXml(v:lnum)
+                echo "insideXml"
 		return XmlIndentGet(v:lnum,1)
 	endif
-	return GetSMLIndent()
+        echo "insideSML"
+
+        " Indent supplemental to GetSMLIndent()
+        let lnum = prevnonblank(v:lnum - 1)
+        let ind = GetSMLIndent()
+        let lline = getline(lnum)
+
+echo "lline is " lline
+
+        " XXX behave like case
+        if lline =~ '^\s*\(datatype\)\>'
+                let ind = ind - &sw + 2
+        endif
+        " overrule vim-sml for datatype
+        if line =~ '^\s*|'
+            let lastSwitch = search('\<\(datatype\)\>','bW')
+            let switchLine = getline(lastSwitch)
+            let switchLineIndent = indent(lastSwitch)
+            if lline =~ '^\s*|'
+                "return ind
+            elseif switchLine =~ '\<datatype\>'
+              return col(".") - 1
+            endif
+        endif
+        " WIP The following statements are in development.
+        " XXX correctly indent for side effects
+        " XXX support ;
+        if lline =~ '<-' && lline !~ ';$'
+                let ind = ind + &sw
+        endif
+        if lline =~ ';'
+        "        let ind = ind " - &sw
+        endif
+        " XXX basic record behaviours
+        if lline =~ '{$'
+                let ind = ind + &sw
+        endif
+        if lline =~ '}$'
+                echo "lline is " lline " and ind "  ind
+        "        let ind = ind " &sw
+        endif
+        " Indent if last line starts
+        if lline =~ '^\s*\(and\|dml\|datatype\)\>'
+                let ind = ind + &sw
+        endif
+        return ind
 endfunction
 
 setlocal indentexpr=UrIndent()
+setlocal indentkeys+=0=and,0=;
